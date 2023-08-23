@@ -1,4 +1,11 @@
-﻿@import '../../source/Variables';
+﻿@use "sass:meta";
+@use '../../source/Variables';
+
+a:not([href^="#"]):not(.normal) {
+    color: #fc6542;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
 
 h2,
 .title {
@@ -12,7 +19,7 @@ h3,
 .subtitle {
     color: var(--h3);
     font-weight: 600;
-    font-size: 0.96rem;
+    font-size: 1.1rem;
 }
 
 h4,
@@ -20,25 +27,17 @@ h5,
 h6 {
     color: var(--h4);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .body,
 p,
 ol,
 ul {
-    line-height: 1.6rem;
+    line-height: 2rem;
     color: var(--p);
     font-size: 0.95rem;
     text-align: justify;
-
-    a:not([href^="#"]) {
-        color: #fc6542;
-
-        &.normal {
-            color: inherit;
-        }
-    }
 }
 
 b,
@@ -72,28 +71,29 @@ li:last-child {
     margin-bottom: 2em;
 }
 
+$mb: 4rem;
+
 img {
     max-width: 28rem;
     max-height: 25rem;
     margin: 2rem auto;
-    margin-bottom: 4rem;
     display: block;
     width: auto;
     box-shadow: 2px 2px 7px #0000003b;
     transition: .2s;
+    margin-bottom: $mb;
 
-    +span {
+    + span {
         display: block;
         text-align: center;
-        padding: .5em;
-        color: red;
+        padding: 0;
         font-weight: bold;
         font-size: 1rem;
-        margin-top: -2rem;
-        margin-bottom: 2rem;
+        margin-top: -.75 * $mb;
+        margin-bottom: .75 * $mb;
     }
 
-    .fullscreen {
+    &.fullscreen {
         max-width: unset;
         width: 100%;
         max-height: unset;
@@ -130,6 +130,7 @@ blockquote {
     max-width: 50em;
     margin: auto;
     line-height: 2em;
+    text-align: justify;
 
     &::before {
         content: ",,";
@@ -139,14 +140,14 @@ blockquote {
         right: 0.8em;
     }
 
-    @include media($mobile) {
+    @include Variables.media(Variables.$mobile) {
         font-size: 0.85rem;
     }
 }
 
 ins {
     text-decoration: none;
-    font-size: .85rem;
+    font-size: .95rem;
     background: #f9f9f9;
     display: block;
     border-right: .3em solid;
@@ -154,6 +155,7 @@ ins {
     border-image: linear-gradient(#f9f9f9 25%, var(--h3) 25%, var(--h3) 75%, #f9f9f9 75%);
     border-image-slice: 1;
     border-radius: 0.7em;
+    margin-block: 2rem;
 }
 
 hr {
@@ -182,11 +184,10 @@ mark {
         margin-right: .5em;
         float: left;
         border-right: 0.25em solid black;
-
     }
 
     color: var(--h2);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     background: none;
     max-width: 50%;
@@ -207,10 +208,10 @@ mark {
     border-radius: .4rem;
     overflow: hidden;
     margin-bottom: 3rem;
-    font-size: 1.1rem;
-    width: max-content;
+    width: fit-content;
     overflow-x: auto;
     max-width: 100%;
+    font-size: .95rem;
 
     .tr {
         display: table-row;
@@ -219,14 +220,15 @@ mark {
             background-color: #348edc;
             color: white;
             font-weight: bold;
+        }
 
+        .td {
+            display: table-cell;
+            padding: 0.7rem 1rem;
+            text-align: center;
 
-
-
-
-            td {
-                font-size: 1.1rem;
-                padding: 0.7rem 1.3rem;
+            &.justify {
+                text-align: justify;
             }
         }
 
@@ -235,20 +237,8 @@ mark {
         }
     }
 
-    .td-En {
-        direction: ltr;
-        border-left: .1em solid #ececec;
-        display: table-cell;
-        padding: 0.7rem 1rem;
-        text-align: center;
-    }
-
-    .td {
-        display: table-cell;
-        padding: 0.7rem 1rem;
-        text-align: center;
-
-        &.justify {
+    &.not-center {
+        .tr:not(.head) .td {
             text-align: justify;
         }
     }
@@ -265,7 +255,7 @@ mark {
     }
 }
 
-@import './collage';
+@include meta.load-css('collage');
 
 .TipBox,
 .tipBox {
@@ -338,6 +328,7 @@ h3,
 .subtitle,
 .h4,
 ins,
+.attention,
 blockquote,
 .body {
     &:not(:last-child) {
@@ -345,8 +336,66 @@ blockquote,
     }
 }
 
+.ltr {
+    direction: ltr !important;
+}
 
-@include media($mobile) {
+//COLORS
+$definedColors: red, blue, green;
+@for $i from 1 through length($definedColors) {
+    $item: nth($list: $definedColors, $n: $i);
+    .#{$item} {
+        color: $item;
+    }
+}
+
+//syntax heighlighter (pre)
+pre {
+    white-space: break-spaces;
+    direction: ltr;
+    text-align: left;
+    background: #1F1F1F;
+    color: #ffffff;
+    padding: 1em;
+    border-radius: 1em;
+    margin: 1em 0;
+    font-size: 1.4em;
+    position: relative;
+
+    > button {
+        background: #FFFFFF;
+        padding: .6em 1em;
+        border-radius: .6em;
+        position: absolute;
+        right: 1em;
+        top: 1em;
+        font-size: .9em;
+        font-family: yekanbakh;
+        direction: rtl;
+        transition: .2s;
+        width: 3.8em;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: #e8e8e8;
+        }
+
+        &.copied {
+            width: 5.6em;
+            background-color: rgb(67, 159, 67);
+            color: white;
+            cursor: unset;
+        }
+    }
+}
+
+@include Variables.media(Variables.$mobile) {
+    mark {
+        max-width: 100%;
+        margin: 0 0 1em 0;
+    }
+
+
     img {
         width: 100%;
     }
