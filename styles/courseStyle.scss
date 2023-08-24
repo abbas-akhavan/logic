@@ -1,7 +1,7 @@
 main#course {
     --colorCompliment: white;
     --radius: 1em;
-    margin: 3em;
+    margin: 3em 5.4em;
 
     header {
         background-color: var(--colorTheme);
@@ -10,28 +10,72 @@ main#course {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-inline: 7em;
+        padding-inline: 14em 4em;
+        height: 17em;
 
         .logoContainer {
             background-color: white;
-            border: .1em solid purple;
+            border: .45em solid var(--colorTheme);
             padding: 1em;
             border-radius: 50%;
-            height: 13em;
-            width: 13em;
-            transform: scale(1.4);
+            height: 21em;
+            width: 21em;
+            display: flex;
 
             img {
                 object-fit: contain;
-                transform: scale(1.1) translate(16px, 17px);
             }
         }
+
         >img {
-            width: 3em;
+            height: 23em;
+            width: 32em;
+            align-self: flex-end;
         }
+
         >section {
+            font-size: 1.9em;
+            width: 23em;
+            height: 90%;
+            line-height: 2.2em;
+            position: relative;
+
             h1 {
-                color: #F7CD15;
+                color: var(--colorTitle);
+                font-size: 2.2em;
+            }
+
+            span {
+                position: absolute;
+                font-size: 0.9em;
+                top: 5em;
+                right: 7em;
+
+                &:nth-of-type(2) {
+                    top: 6.5em;
+                    right: 11em;
+                }
+            }
+
+            p {
+                position: absolute;
+                font-size: .9em;
+                font-weight: 600;
+                top: 1em;
+                left: 0;
+
+                &:nth-of-type(2) {
+                    top: 3.6em;
+                    left: -3.6em;
+                    text-align: left;
+                    line-height: 2em;
+                }
+
+                em {
+                    font-size: 2em;
+                    font-style: normal;
+                    font-weight: 400;
+                }
             }
         }
     }
