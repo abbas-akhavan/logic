@@ -1,7 +1,16 @@
+body {
+    background-color: #FAF9FF;
+}
+
 main#course {
     --colorCompliment: white;
     --radius: 1em;
+
     margin: 3em 5.4em;
+
+    >* {
+        margin-bottom: 6em;
+    }
 
     header {
         background-color: var(--colorTheme);
@@ -77,6 +86,61 @@ main#course {
                     font-weight: 400;
                 }
             }
+        }
+    }
+
+    .courseInfo {
+        font-size: 1.2em;
+
+        span {
+            padding: 1.6em 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 1.3em;
+        }
+
+        .head,
+        .body .tr {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            border-radius: var(--radius);
+        }
+
+        .head {
+            background-color: #C6D4E1;
+            border-radius: var(--radius);
+            margin-bottom: 1em;
+
+            span {
+                font-weight: 600;
+            }
+        }
+
+        .body {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 1em;
+            box-shadow: 0px 0px 15px #00000014;
+
+            .tr:nth-child(2n) {
+                background-color: #F9F9F9;
+            }
+
+            span:nth-child(8) {
+                color: red;
+            }
+        }
+
+        a.button {
+            background-color: #308FCC;
+            color: white;
+            width: fit-content;
+            height: fit-content;
+            margin: auto;
+            padding: 0.3em 1em;
+            border-radius: 0.5em;
         }
     }
 }
