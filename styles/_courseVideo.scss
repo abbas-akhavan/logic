@@ -1,11 +1,11 @@
 @mixin courseVideo {
     width: 52em;
-    margin: auto;
+    margin: 5em auto;
     background-color: grey;
     position: relative;
     border-radius: 1rem;
     overflow: hidden;
-    transform: translateX(1.8em);
+    cursor: pointer;
 
     video {
         width: 100%;
@@ -53,5 +53,13 @@
         height: 100%;
         top: 0;
         right: 0;
+    }
+
+    &.active {
+        &::after, h3, p, img {
+            transition: .2s;
+            opacity: 0;
+            visibility: hidden;
+        }
     }
 }
