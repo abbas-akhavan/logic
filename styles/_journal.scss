@@ -1,14 +1,10 @@
 @use 'sass:meta';
 @use 'courseVideo' as cv;
+@use '../Content/source/innerContent' as ic;
 
 .journal {
-    --background: white;
-    --p: #4b4b4b;
-    --h2: #e30613;
-    --h3: #1d71b8;
-
     section {
-        @include meta.load-css('../Content/source/innerContent');
+        @include ic.innerContent; 
     }
 
     .introDiv {
