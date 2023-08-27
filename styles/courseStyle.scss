@@ -5,14 +5,18 @@ body {
 main#course {
     --colorCompliment: white;
     --radius: 1em;
+    --shadow: 0px 0px 15px #00000014;
 
-    margin: 3em 5.4em;
+    // margin: 3em 5.4em;
+    // main is top *******
+    margin: 3em 4.1em;
+    margin-left: 5.6em;
 
     >* {
         margin-bottom: 6em;
     }
 
-    header {
+    > header {
         background-color: var(--colorTheme);
         color: var(--colorCompliment);
         border-radius: var(--radius);
@@ -89,7 +93,7 @@ main#course {
         }
     }
 
-    .courseInfo {
+    > .courseInfo {
         font-size: 1.2em;
 
         span {
@@ -122,7 +126,7 @@ main#course {
             background-color: white;
             border-radius: var(--radius);
             padding: 1em;
-            box-shadow: 0px 0px 15px #00000014;
+            box-shadow: var(--shadow);
 
             .tr:nth-child(2n) {
                 background-color: #F9F9F9;
@@ -141,6 +145,32 @@ main#course {
             margin: auto;
             padding: 0.3em 1em;
             border-radius: 0.5em;
+        }
+    }
+
+    > .main {
+        display: grid;
+        grid-template-columns: 29em auto;
+        gap: 2em;
+        font-size: 1.3em;
+
+        > aside {
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            padding: 2em;
+
+            h3 {
+                color: #308FCC;
+                font-weight: 400;
+            }
+
+            a {
+                text-decoration: underline;
+            }
+
+            ol li {
+                list-style: decimal inside;
+            }
         }
     }
 }
