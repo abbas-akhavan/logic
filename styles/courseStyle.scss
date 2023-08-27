@@ -1,3 +1,5 @@
+@use 'journal' as j;
+
 body {
     background-color: #FAF9FF;
 }
@@ -150,27 +152,40 @@ main#course {
 
     > .main {
         display: grid;
-        grid-template-columns: 29em auto;
+        grid-template-columns: 22em auto;
         gap: 2em;
         font-size: 1.3em;
 
         > aside {
             box-shadow: var(--shadow);
             border-radius: var(--radius);
-            padding: 2em;
+            padding: 1.5em;
+            --mb: .5em;
 
             h3 {
                 color: #308FCC;
-                font-weight: 400;
+                font-weight: 500;
+                margin-bottom: var(--mb);
+                line-height: 1.3em;
             }
 
             a {
                 text-decoration: underline;
             }
 
-            ol li {
-                list-style: decimal inside;
+            ol {
+                margin-bottom: var(--mb);
+            li {
+                list-style-type: decimal;
+                line-height: 1.6em;
+                margin-right: 1.3em;
+                text-align: justify;
             }
+            }
+        }
+
+        > .td-content {
+            @include j.journal;
         }
     }
 }
