@@ -4,8 +4,9 @@
 @mixin innerContent {
     --background: white;
     --a: #fc6542;
-    --p: #4b4b4b;
-    --h2: #e30613;
+    --p: #919191;
+    --h: #383838;
+    --h_compliment: #C39C1B;
     --h3: #1d71b8;
 
 
@@ -17,10 +18,20 @@
 
     h2,
     .title {
-        color: var(--h2);
-        font-size: 1.3rem;
+        color: var(--h);
+        --borderlength: 1.5rem;
         font-weight: bold;
-        text-align: center;
+        border-bottom: .19rem solid transparent;
+        border-image:
+        linear-gradient(to right, transparent 0% calc(100% - var(--borderlength)) ,var(--h_compliment) calc(100% - var(--borderlength)) 100%);
+        border-image-slice: 1;
+        padding-bottom: 0.8rem;
+        text-align: right;
+        font-size: 1.6rem; 
+            
+        span {
+            color: var(--h_compliment);
+        }
     }
 
     h3,
@@ -42,9 +53,9 @@
     p,
     ol,
     ul {
-        line-height: 2rem;
+        line-height: 1.9rem;
         color: var(--p);
-        font-size: 0.95rem;
+        font-size: 1.1rem;
         text-align: justify;
     }
 
@@ -194,7 +205,7 @@
             border-right: 0.25em solid black;
         }
 
-        color: var(--h2);
+        color: var(--h);
         font-size: 1rem;
         font-weight: bold;
         background: none;
@@ -317,7 +328,7 @@
         padding-top: 1em;
 
         span {
-            color: var(--h2);
+            color: var(--h);
             font-weight: bold;
             text-align: center;
             display: block;

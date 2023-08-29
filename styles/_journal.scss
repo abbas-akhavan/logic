@@ -4,7 +4,7 @@
 
 .journal {
     section {
-        @include ic.innerContent; 
+        @include ic.innerContent;
     }
 
     .introDiv {
@@ -35,7 +35,8 @@
                     height: 100%;
                 }
 
-                &::after, &::before {
+                &::after,
+                &::before {
                     content: '';
                     border: .1em solid var(--color);
                     position: absolute;
@@ -60,5 +61,39 @@
 
     .courseVideo {
         @include cv.courseVideo;
+    }
+
+    .chart {
+        position: relative;
+        $colors: #A3DE8A,
+        #DE87D8,
+        #88D8E1,
+        #C287E1,
+        #DD8C89;
+
+        >span {
+            --wid: 15em;
+            width: var(--wid);
+            height: var(--wid);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: var(--color);
+            position: absolute;
+
+            @for $i from 1 through length($colors) {
+                $color: nth($colors, $i);
+
+                &:nth-child(#{$i}) {
+                    --color: #{$color};
+                }
+            }
+
+            &.center {
+                color: white;
+                --color: #4E7C9D;
+            }
+        }
     }
 }

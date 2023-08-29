@@ -9,6 +9,7 @@ $(function() {
         videoWrap.onclick = () => {
             videoWrap.classList.add('active');
             video.controls = true;
+            video.play();
         }
 
         video.onended = () => {
