@@ -64,35 +64,91 @@
     }
 
     .chart {
+        font-size: 1.3em;
+        font-weight: 500;
         position: relative;
         $colors: #A3DE8A,
         #DE87D8,
         #88D8E1,
         #C287E1,
         #DD8C89;
+        $positions: (0 50%),
+        (50% 20%),
+        (50% 80%),
+        (100% 30%),
+        (100% 70%);
+
+        height: 30em;
+        width: 45em;
+        margin: auto;
+        margin-block: 3em 9em;
 
         >span {
-            --wid: 15em;
+            --wid: 12em;
             width: var(--wid);
             height: var(--wid);
+            left: calc(var(--left) - calc(var(--wid) / 2));
+            top: calc(var(--top) - calc(var(--wid) / 2));
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 50%;
             background-color: var(--color);
+            color: #413D43;
             position: absolute;
+            text-align: center;
+            padding: 2em;
 
             @for $i from 1 through length($colors) {
                 $color: nth($colors, $i);
+                $position: nth($positions, $i);
+                $left: nth($position, 2);
+                $top: nth($position, 1);
 
                 &:nth-child(#{$i}) {
                     --color: #{$color};
+                    --left: #{$left};
+                    --top: #{$top};
+                }
+            }
+
+            &:not(.center) {
+                --offset: .7em;
+                
+                &::before,
+                &::after {
+                    content: '';
+                    background-color: inherit;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    opacity: .5;
+                    border-radius: 50%;
+                    z-index: -1;
+                    top: var(--offset);
+                }
+                &::before {
+                    top: unset;
+                    bottom: var(--offset);
                 }
             }
 
             &.center {
                 color: white;
                 --color: #4E7C9D;
+                --left: 50%;
+                --top: 65%;
+                font-weight: 700;
+
+                &::after {
+                    content: '';
+                    border: .1em solid white;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    transform: scale(.95);
+                    border-radius: 50%;
+                }
             }
         }
     }
