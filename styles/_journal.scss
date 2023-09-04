@@ -3,11 +3,18 @@
 @use '../Content/source/innerContent' as ic;
 
 .journal {
+    --radius: .6em;
+
+    // anywhere the section tag is used, innerContent will apply !!
     section {
         @include ic.innerContent;
     }
 
-    .introDiv {
+    >* {
+        margin-bottom: 3em !important;
+    }
+
+    .splitDiv {
         display: grid;
         grid-template-columns: 1.3fr 1fr;
         --p: grey;
@@ -81,7 +88,7 @@
         height: 30em;
         width: 45em;
         margin: auto;
-        margin-block: 3em 9em;
+        margin-block: 3em 9em !important;
 
         >span {
             --wid: 12em;
@@ -114,7 +121,7 @@
 
             &:not(.center) {
                 --offset: .7em;
-                
+
                 &::before,
                 &::after {
                     content: '';
@@ -127,6 +134,7 @@
                     z-index: -1;
                     top: var(--offset);
                 }
+
                 &::before {
                     top: unset;
                     bottom: var(--offset);
@@ -151,5 +159,85 @@
                 }
             }
         }
+    }
+
+    .blueBlock {
+        background: url('/Content/images/courseDetails/blueBlock.png');
+        background-size: cover;
+        width: 38rem;
+        height: 24rem;
+        margin: 4em auto;
+        color: white;
+        font-size: 1.2em;
+        padding-block: 9rem 1rem;
+        padding-inline: 4rem;
+        text-align: justify;
+        overflow: hidden;
+        position: relative;
+
+        &::before {
+            content: '“';
+            font-size: 6em;
+            position: absolute;
+            top: 1em;
+        }
+    }
+
+    .part {
+        background-color: var(--colorTheme);
+        border-radius: var(--radius);
+        font-size: 1.2em;
+        color: white;
+        padding: 0.9em 2.3em;
+        margin-bottom: .5em !important;
+    }
+
+    .box {
+        background-color: var(--background);
+        border: .1em solid var(--colorAlt);
+        border-radius: var(--radius);
+        padding: 1em 2em;
+        --p: #5C5C5C;
+
+        &.project {
+            background-color: var(--colorAlt);
+            display: grid;
+            grid-template-columns: 35% auto;
+            grid-template-columns: 25% auto;
+            gap: 6em;
+            padding: 1em 5em;
+
+            * {
+                color: var(--background) !important;
+            }
+
+            .left {
+                margin-block: auto;
+                
+                h4 {
+                    margin-top: 1em;
+                }
+            }
+        }
+    }
+
+    img.float {
+        &.right {
+            float: right;
+        }
+
+        &.left {
+            float: left;
+        }
+    }
+
+    .heighlight {
+        color: var(--colorHeighlight);
+        font-weight: 500;
+    }
+
+    .heighlight2 {
+        color: var(--colorAlt);
+        font-weight: 500;
     }
 }

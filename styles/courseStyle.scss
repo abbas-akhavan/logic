@@ -8,6 +8,7 @@ main#course {
     --colorCompliment: white;
     --radius: 1em;
     --shadow: 0px 0px 15px #00000014;
+    --colorHeighlight: #308FCC;
 
     // margin: 3em 5.4em;
     // main is top *******
@@ -163,7 +164,7 @@ main#course {
             --mb: .5em;
 
             h3 {
-                color: #308FCC;
+                color: var(--colorHeighlight);
                 font-weight: 500;
                 margin-bottom: var(--mb);
                 line-height: 1.3em;
