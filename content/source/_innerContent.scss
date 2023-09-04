@@ -1,5 +1,6 @@
 ﻿@use "sass:meta";
 @use 'Variables';
+@use '../../styles/titles' as t;
 
 @mixin innerContent {
     --background: white;
@@ -7,7 +8,7 @@
     --p: #919191;
     --h: #383838;
     --h_compliment: #C39C1B;
-    --h3: #1d71b8;
+    --h3: var(--colorHeighlight);
 
     a {
         display: block;
@@ -20,62 +21,17 @@
         }
     }
 
-    .h4 {
+    @include t.titles;
+
+    
+    .heighlight {
         color: var(--colorHeighlight);
-        font-weight: 600;
+        font-weight: 500;
     }
 
-    h2,
-    .title {
-        color: var(--h);
-        --borderlength: 1.5rem;
-        font-weight: bold;
-        border-bottom: .19rem solid transparent;
-        border-image:
-            linear-gradient(to right, transparent 0% calc(100% - var(--borderlength)), var(--h_compliment) calc(100% - var(--borderlength)) 100%);
-        border-image-slice: 1;
-        padding-bottom: 0.8rem;
-        text-align: right;
-        font-size: 1.6rem;
-
-        span {
-            color: var(--h_compliment);
-        }
-
-        &.alt {
-            text-align: center;
-            border: none;
-            position: relative;
-            margin-bottom: 2em !important;
-
-            &::after {
-                content: '';
-                display: block;
-                height: 1em;
-                width: .1em;
-                background-color: var(--h_compliment);
-                position: absolute;
-                top: calc(100% + .2em);
-                left: 0;
-                right: 0;
-                margin: auto;
-            }
-        }
-    }
-
-    h3,
-    .subtitle {
-        color: var(--h3);
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-
-    h4,
-    h5,
-    h6 {
-        color: var(--h4);
-        font-weight: 600;
-        font-size: 1.1rem;
+    .heighlight2 {
+        color: var(--colorAlt);
+        font-weight: 500;
     }
 
     .body,

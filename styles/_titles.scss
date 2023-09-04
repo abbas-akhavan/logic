@@ -1,0 +1,50 @@
+@mixin titles {
+
+    .h2, .h3 {
+        color: var(--h);
+        --borderlength: 1.5rem;
+        font-weight: bold;
+        border-bottom: .19rem solid transparent;
+        border-image:
+            linear-gradient(to right, transparent 0% calc(100% - var(--borderlength)), var(--h_compliment) calc(100% - var(--borderlength)) 100%);
+        border-image-slice: 1;
+        padding-bottom: 0.8rem;
+        text-align: right;
+        font-size: 1.6rem;
+
+        span {
+            color: var(--h_compliment);
+        }
+
+        &.center {
+            text-align: center;
+            border: none;
+            position: relative;
+            margin-bottom: 2em !important;
+
+            &::after {
+                content: '';
+                display: block;
+                height: 1em;
+                width: .1em;
+                background-color: var(--h_compliment);
+                position: absolute;
+                top: calc(100% + .2em);
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
+
+        &.h3 {
+            font-size: 1.3rem;
+        }
+    }
+
+
+    .h4 {
+        color: var(--h4);
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+}
