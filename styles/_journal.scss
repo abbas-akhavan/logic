@@ -187,13 +187,13 @@
         background-color: var(--colorTheme);
         border-radius: var(--radius);
         font-size: 1.2em;
-        color: var(--background);
+        color: var(--colorCompliment);
         padding: 0.9em 2.3em;
         margin-bottom: .5em !important;
     }
 
     .box {
-        background-color: var(--background);
+        background-color: var(--colorCompliment);
         border: .1em solid var(--colorAlt);
         border-radius: var(--radius);
         padding: 1em 2em;
@@ -208,7 +208,7 @@
             padding: 1em 5em;
 
             * {
-                color: var(--background) !important;
+                color: var(--colorCompliment) !important;
             }
 
             .left {
