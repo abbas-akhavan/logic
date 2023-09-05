@@ -1,6 +1,6 @@
 @mixin titles {
 
-    .h2, .h3 {
+    .h2, .h3, h2, h3 {
         color: var(--h);
         --borderlength: 1.5rem;
         font-weight: bold;
@@ -36,13 +36,14 @@
             }
         }
 
-        &.h3 {
-            font-size: 1.3rem;
-        }
     }
 
+    .h3, h3 {
+        font-size: 1.3rem;
+    }
 
-    .h4 {
+    .h4,
+    h4 {
         color: var(--h4);
         font-weight: 600;
         font-size: 1.1rem;
