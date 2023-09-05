@@ -8,6 +8,7 @@
     // anywhere the section tag is used, innerContent will apply !!
     section {
         @include ic.innerContent;
+        --h_compliment: var(--colorAlt);
     }
 
     >* {
