@@ -15,12 +15,14 @@
         margin-bottom: 3em !important;
     }
 
-    .splitDiv {
+    .split {
         display: grid;
         grid-template-columns: 1.3fr 1fr;
+        grid-template-areas: 'right left';
         --p: grey;
 
         .left {
+            grid-area: left;
             padding-inline: 2em 0em;
 
             .imgWrap {
@@ -64,6 +66,9 @@
                     opacity: .6;
                 }
             }
+        }
+        .right {
+            grid-area: right;
         }
     }
 
@@ -167,7 +172,7 @@
         background-size: cover;
         width: 38rem;
         height: 24rem;
-        margin: 4em auto;
+        margin: 3rem auto;
         color: white;
         font-size: 1.2em;
         padding-block: 9rem 1rem;
