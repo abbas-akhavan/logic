@@ -11,6 +11,7 @@
         padding-bottom: 0.8rem;
         text-align: right;
         font-size: 1.6rem;
+        margin-bottom: 1rem;
 
         span {
             color: var(--h_compliment);
@@ -40,10 +41,10 @@
 
     .h3, h3 {
         font-size: 1.3rem;
+        padding-bottom: 0.5rem;
     }
 
-    .h4,
-    h4 {
+    .h4, h4 {
         color: var(--h4);
         font-weight: 600;
         font-size: 1.1rem;
