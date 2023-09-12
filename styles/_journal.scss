@@ -109,6 +109,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            line-height: 1.6em;
             background-color: var(--color);
             color: #413D43;
             position: absolute;
@@ -271,6 +272,38 @@
     }
 
     @include v.media(v.$tablet) {
+        .chart {
+            font-size: 1.75vw;
+            width: 53.7em;
+            height: 43.9em;
+            margin-bottom: 14em !important;
+
+            >span {
+                font-size: 1.6em;
+                padding: 0;
+                $positions: (0 50%),
+                (50% 17%),
+                (50% 85%),
+                (100% 20%),
+                (100% 80%);
+
+                @for $i from 1 through length($positions) {
+                    $item: nth($positions, $i);
+                    $top: nth($item, 1);
+                    $left: nth($item, 2);
+
+                    &:nth-child(#{$i}) {
+                        --top: #{$top};
+                        --left: #{$left};
+                    }
+                }
+
+                &.center {
+                    --top: 73%;
+                }
+            }
+        }
+
         .split {
             display: flex;
             flex-direction: column;
@@ -287,6 +320,7 @@
                     margin: 2em auto;
                 }
             }
+
             .right {
                 order: 2;
             }
