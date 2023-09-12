@@ -271,10 +271,52 @@
     }
 
     @include v.media(v.$tablet) {
-        background-color: yellow;
+        .split {
+            display: flex;
+            flex-direction: column;
+
+            .left {
+                order: 1;
+
+                .imgWrap:not(:first-child) {
+                    display: none;
+                }
+
+                .imgWrap:first-child {
+                    float: unset;
+                    margin: 2em auto;
+                }
+            }
+            .right {
+                order: 2;
+            }
+        }
+
+        .blueBlock {
+            font-size: 1.1em;
+            width: 94vw;
+            height: 59.3vw;
+            padding: 6vw;
+            padding-top: 17vw;
+
+            &::before {
+                top: 15vw;
+            }
+        }
+
+        .box.project {
+            display: flex;
+            flex-direction: column;
+            padding-inline: 1.5em;
+
+            img {
+                width: 16em;
+                margin: auto;
+            }
+        }
     }
 
     @include v.media(v.$mobile) {
-        background-color: red;
+        background-color: yellow;
     }
 }

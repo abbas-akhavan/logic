@@ -1,3 +1,4 @@
+@use '../Content/source/Variables' as v;
 @mixin courseVideo {
     max-width: 52em;
     width: 100%;
@@ -62,5 +63,9 @@
             opacity: 0;
             visibility: hidden;
         }
+    }
+
+    @include v.media(v.$tablet) {
+        font-size: 0.8em;
     }
 }
