@@ -29,6 +29,7 @@ main#course {
         align-items: center;
         padding-inline: 10% 3%;
         height: 17em;
+        margin-top: 7em;
 
         .logoContainer {
             background-color: white;
@@ -61,17 +62,47 @@ main#course {
             h1 {
                 color: var(--colorTitle);
                 font-size: 2.2em;
+                position: relative;
+
+                &::before {
+                    content: '';
+                    background-image: url('/Content/images/courseDetails/check.png');
+                    width: 1em;
+                    height: 1em;
+                    display: block;
+                    position: absolute;
+                    right: 2.5em;
+                    top: -0.6em;
+                }
+
+                &::after {
+                    content: 'جامع';
+                    position: absolute;
+                    right: 5.4em;
+                    top: -2.4em;
+                    font-size: 0.5em;
+                }
             }
 
-            span {
+            >div {
                 position: absolute;
-                font-size: 0.9em;
                 top: 5em;
                 right: 7em;
 
+                span {
+                    font-size: 0.9em;
+                    display: block;
+                    line-height: 1.5em;
+
+                    &:nth-of-type(2) {
+                        margin-right: 3em;
+                    }
+                }
+
                 &:nth-of-type(2) {
-                    top: 6.5em;
-                    right: 11em;
+                    left: -3em;
+                    color: var(--colorTitle);
+                    right: unset;
                 }
             }
 
@@ -81,13 +112,8 @@ main#course {
                 font-weight: 600;
                 top: 1em;
                 left: 0;
-
-                &:nth-of-type(2) {
-                    top: 3.6em;
-                    left: -3.6em;
-                    text-align: left;
-                    line-height: 2em;
-                }
+                text-align: left;
+                line-height: 1.7em;
 
                 em {
                     font-size: 2em;
@@ -333,7 +359,5 @@ main#course {
         }
     }
 
-    @include v.media(v.$mobile) {
-        
-    }
+    @include v.media(v.$mobile) {}
 }
