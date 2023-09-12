@@ -1,5 +1,6 @@
 @mixin courseVideo {
-    width: 52em;
+    max-width: 52em;
+    width: 100%;
     margin: 5em auto;
     background-color: grey;
     position: relative;

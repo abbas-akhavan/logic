@@ -1,4 +1,5 @@
 @use 'journal';
+@use '../Content/source/Variables' as v;
 
 body {
     background-color: #FAF9FF;
@@ -10,10 +11,10 @@ main#course {
     --shadow: 0px 0px 15px #00000014;
     --colorHeighlight: #308FCC;
 
-    // margin: 3em 5.4em;
+    margin: 3em 4%;
     // main is top *******
-    margin: 3em 4.1em;
-    margin-left: 5.6em;
+    // margin: 3em 4.1em;
+    // margin-left: 5.6em;
 
     >* {
         margin-bottom: 6em;
@@ -26,7 +27,7 @@ main#course {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-inline: 14em 4em;
+        padding-inline: 10% 3%;
         height: 17em;
 
         .logoContainer {
@@ -37,6 +38,7 @@ main#course {
             height: 21em;
             width: 21em;
             display: flex;
+            flex-shrink: 0;
 
             img {
                 object-fit: contain;
@@ -138,13 +140,13 @@ main#course {
         }
 
         .body {
-            background-color: white;//sdff
+            background-color: white; //sdff
             border-radius: var(--radius);
             padding: 1em;
             box-shadow: var(--shadow);
 
             .tr:nth-child(2n) {
-                background-color: #F9F9F9;//sdff
+                background-color: #F9F9F9; //sdff
             }
 
             span:nth-child(8) {
@@ -172,8 +174,11 @@ main#course {
         >aside {
             box-shadow: var(--shadow);
             border-radius: var(--radius);
-            padding: 1.5em;
-            --mb: .5em;
+            border: 1.5em solid transparent;
+            overflow: hidden;
+            font-size: .9em;
+            height: fit-content;
+            --mb: 1.1em;
 
             h3 {
                 color: var(--colorHeighlight);
@@ -183,7 +188,11 @@ main#course {
             }
 
             a {
-                text-decoration: underline;
+                white-space: nowrap;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
 
             ol {
@@ -198,5 +207,77 @@ main#course {
             }
         }
 
+    }
+
+    @include v.media(1400px) {
+        >header {
+            font-size: .8em;
+            padding-inline: 6em 0;
+        }
+    }
+
+    @include v.media(v.$screen) {
+        margin-inline: 1.6em;
+
+        >.main {
+            grid-template-columns: auto;
+
+            aside {
+                display: none;
+            }
+        }
+
+        >header {
+            padding-inline: 2em;
+            font-size: 1.3vw;
+
+            .logoContainer {
+                background: transparent;
+                border: none;
+                position: absolute;
+                display: none;
+            }
+
+            >img {
+                font-size: .7em;
+            }
+
+            section {
+                span {
+                    &:nth-of-type(1) {
+                        right: 2em;
+                    }
+
+                    &:nth-of-type(2) {
+                        right: 4em;
+                    }
+                }
+
+                p {
+                    top: 2.6em;
+                    left: -1em;
+
+                    &:nth-of-type(2) {
+                        top: 5.2em;
+                        left: -1.5em;
+                    }
+                }
+            }
+
+            >h1 {
+                font-size: 2em;
+            }
+        }
+    }
+
+    @include v.media(v.$laptop) {
+    }
+
+    @include v.media(v.$tablet) {
+       background-color: red; 
+    }
+
+    @include v.media(v.$mobile) {
+        background-color: yellow;
     }
 }
