@@ -274,7 +274,7 @@
     @include v.media(v.$tablet) {
         .chart {
             font-size: 1.75vw;
-            width: 53.7em;
+            width: 51.7em;
             height: 43.9em;
             margin-bottom: 14em !important;
 
@@ -310,6 +310,7 @@
 
             .left {
                 order: 1;
+                padding: 0;
 
                 .imgWrap:not(:first-child) {
                     display: none;
@@ -327,14 +328,14 @@
         }
 
         .blueBlock {
-            font-size: 1.1em;
-            width: 94vw;
-            height: 59.3vw;
+            font-size: 3.7vw;
+            width: 90vw;
+            height: 56vw;
             padding: 6vw;
-            padding-top: 17vw;
+            padding-top: 13.5vw;
 
             &::before {
-                top: 15vw;
+                top: 12.8vw;
             }
         }
 
@@ -344,13 +345,15 @@
             padding-inline: 1.5em;
 
             img {
-                width: 16em;
+                width: 15em;
                 margin: auto;
             }
         }
     }
 
     @include v.media(v.$mobile) {
-        background-color: yellow;
+        .imgWrap {
+            font-size: .6em;
+        }
     }
 }
