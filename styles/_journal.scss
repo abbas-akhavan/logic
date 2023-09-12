@@ -1,359 +1,353 @@
-@use 'sass:meta';
-@use '../Content/source/Variables' as v;
-@use 'courseVideo' as cv;
-@use '../Content/source/innerContent' as ic;
+@use "sass:meta";
+@use "../Content/source/Variables" as v;
+@use "courseVideo" as cv;
+@use "../Content/source/innerContent" as ic;
 
 .journal {
-    --radius: .6em;
+  --radius: 0.6em;
 
-    // anywhere the section tag is used, innerContent will apply !!
-    section {
-        @include ic.innerContent;
-        --h_compliment: var(--colorAlt);
+  // anywhere the section tag is used, innerContent will apply !!
+  section {
+    @include ic.innerContent;
+    --h_compliment: var(--colorAlt);
+  }
+
+  > * {
+    margin-bottom: 3em !important;
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-areas: "right left";
+    --p: grey;
+
+    .left {
+      grid-area: left;
+      padding-inline: 2em 0em;
+
+      .imgWrap {
+        --wid: 22em;
+        --color: var(--colorAlt);
+        width: var(--wid);
+        height: var(--wid);
+        float: left;
+        position: relative;
+        margin-bottom: 2em;
+
+        &:nth-child(2n) {
+          --wid: 15em;
+          --color: var(--colorTheme);
+          float: right;
+        }
+
+        img {
+          border-radius: 50%;
+          width: 100%;
+          height: 100%;
+        }
+
+        &::after,
+        &::before {
+          content: "";
+          border: 0.1em solid var(--color);
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          top: -0.7em;
+          transform: scale(1.08);
+          z-index: -1;
+          opacity: 0.8;
+        }
+
+        &::before {
+          top: -0.1em;
+          left: -0.5em;
+          transform: scale(1.05);
+          opacity: 0.6;
+        }
+      }
     }
 
-    >* {
-        margin-bottom: 3em !important;
+    .right {
+      grid-area: right;
+    }
+  }
+
+  .courseVideo {
+    @include cv.courseVideo;
+  }
+
+  .chart {
+    font-size: 1.4vw;
+    font-weight: 500;
+    position: relative;
+    $colors: #a3de8a, #de87d8, #88d8e1, #c287e1, #dd8c89;
+    $positions: (0 50%), (50% 20%), (50% 80%), (100% 30%), (100% 70%);
+
+    height: 30em;
+    width: 45em;
+    margin: auto;
+    margin-block: 3em 9em !important;
+
+    > span {
+      --wid: 12em;
+      width: var(--wid);
+      height: var(--wid);
+      left: calc(var(--left) - calc(var(--wid) / 2));
+      top: calc(var(--top) - calc(var(--wid) / 2));
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 1.6em;
+      background-color: var(--color);
+      color: #413d43;
+      position: absolute;
+      text-align: center;
+      padding: 2em;
+
+      @for $i from 1 through length($colors) {
+        $color: nth($colors, $i);
+        $position: nth($positions, $i);
+        $left: nth($position, 2);
+        $top: nth($position, 1);
+
+        &:nth-child(#{$i}) {
+          --color: #{$color};
+          --left: #{$left};
+          --top: #{$top};
+        }
+      }
+
+      &:not(.center) {
+        --offset: 0.7em;
+
+        &::before,
+        &::after {
+          content: "";
+          background-color: inherit;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0.5;
+          border-radius: 50%;
+          z-index: -1;
+          top: var(--offset);
+        }
+
+        &::before {
+          top: unset;
+          bottom: var(--offset);
+        }
+      }
+
+      &.center {
+        color: white;
+        --color: #4e7c9d;
+        --left: 50%;
+        --top: 65%;
+        font-weight: 700;
+
+        &::after {
+          content: "";
+          border: 0.1em solid white;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          transform: scale(0.95);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .blueBlock {
+    background: url("/Content/images/courseDetails/blueBlock.png");
+    background-size: cover;
+    width: 32.4em;
+    height: 20.5em;
+    padding-inline: 3.4em;
+    padding-block: 7.7em 1em;
+    margin: 2.7em auto;
+    line-height: 1.7em;
+    color: white;
+    font-size: 1.2em;
+    text-align: justify;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: "“";
+      font-size: 6em;
+      position: absolute;
+      top: 1em;
+    }
+  }
+
+  .part {
+    background-color: var(--colorTheme);
+    border-radius: var(--radius);
+    font-size: 1.2em;
+    color: var(--colorCompliment);
+    padding: 0.9em 2.3em;
+    margin-bottom: 0.5em !important;
+  }
+
+  .box {
+    background-color: var(--colorCompliment);
+    border: 0.1em solid var(--colorAlt);
+    border-radius: var(--radius);
+    padding: 1em 2em;
+    margin-bottom: 3rem;
+    --p: #5c5c5c;
+
+    &.project {
+      background-color: var(--colorAlt);
+      display: grid;
+      grid-template-columns: 25% auto;
+      gap: 6em;
+      padding: 1em 5em;
+
+      * {
+        color: var(--colorCompliment) !important;
+      }
+
+      .left {
+        margin-block: auto;
+
+        h4 {
+          margin-top: 1em;
+        }
+      }
+
+      img {
+        margin-block: auto;
+      }
+    }
+
+    > img {
+      float: left;
+      box-shadow: unset;
+      margin-left: 3em;
+    }
+  }
+
+  img.float {
+    &.right {
+      float: right;
+    }
+
+    &.left {
+      float: left;
+    }
+  }
+
+  // @include v.media(1400px) {
+  // }
+
+  @include v.media(v.$screen) {
+    .chart {
+      font-size: 1.8vw;
+    }
+
+    .imgWrap {
+      font-size: 0.8em;
+    }
+  }
+
+  @include v.media(v.$laptop) {
+    .chart {
+      font-size: 2.1vw;
+    }
+
+    .box.project {
+      padding: 1em;
+      gap: 1em;
+      grid-template-columns: 34% auto;
+    }
+  }
+
+  @include v.media(v.$tablet) {
+    .chart {
+      font-size: 1.75vw;
+      width: 51.7em;
+      height: 43.9em;
+      margin-bottom: 14em !important;
+
+      > span {
+        font-size: 1.6em;
+        padding: 0;
+        $positions: (0 50%), (50% 17%), (50% 85%), (100% 20%), (100% 80%);
+
+        @for $i from 1 through length($positions) {
+          $item: nth($positions, $i);
+          $top: nth($item, 1);
+          $left: nth($item, 2);
+
+          &:nth-child(#{$i}) {
+            --top: #{$top};
+            --left: #{$left};
+          }
+        }
+
+        &.center {
+          --top: 73%;
+        }
+      }
     }
 
     .split {
-        display: grid;
-        grid-template-columns: 1.3fr 1fr;
-        grid-template-areas: 'right left';
-        --p: grey;
+      display: flex;
+      flex-direction: column;
 
-        .left {
-            grid-area: left;
-            padding-inline: 2em 0em;
+      .left {
+        order: 1;
+        padding: 0;
 
-            .imgWrap {
-                --wid: 22em;
-                --color: var(--colorAlt);
-                width: var(--wid);
-                height: var(--wid);
-                float: left;
-                position: relative;
-                margin-bottom: 2em;
-
-                &:nth-child(2n) {
-                    --wid: 15em;
-                    --color: var(--colorTheme);
-                    float: right;
-                }
-
-                img {
-                    border-radius: 50%;
-                    width: 100%;
-                    height: 100%;
-                }
-
-                &::after,
-                &::before {
-                    content: '';
-                    border: .1em solid var(--color);
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-                    top: -0.7em;
-                    transform: scale(1.08);
-                    z-index: -1;
-                    opacity: .8;
-                }
-
-                &::before {
-                    top: -0.1em;
-                    left: -0.5em;
-                    transform: scale(1.05);
-                    opacity: .6;
-                }
-            }
+        .imgWrap:not(:first-child) {
+          display: none;
         }
 
-        .right {
-            grid-area: right;
+        .imgWrap:first-child {
+          float: unset;
+          margin: 2em auto;
         }
-    }
+      }
 
-    .courseVideo {
-        @include cv.courseVideo;
-    }
-
-    .chart {
-        font-size: 1.4vw;
-        font-weight: 500;
-        position: relative;
-        $colors: #A3DE8A,
-        #DE87D8,
-        #88D8E1,
-        #C287E1,
-        #DD8C89;
-        $positions: (0 50%),
-        (50% 20%),
-        (50% 80%),
-        (100% 30%),
-        (100% 70%);
-
-        height: 30em;
-        width: 45em;
-        margin: auto;
-        margin-block: 3em 9em !important;
-
-        >span {
-            --wid: 12em;
-            width: var(--wid);
-            height: var(--wid);
-            left: calc(var(--left) - calc(var(--wid) / 2));
-            top: calc(var(--top) - calc(var(--wid) / 2));
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            line-height: 1.6em;
-            background-color: var(--color);
-            color: #413D43;
-            position: absolute;
-            text-align: center;
-            padding: 2em;
-
-            @for $i from 1 through length($colors) {
-                $color: nth($colors, $i);
-                $position: nth($positions, $i);
-                $left: nth($position, 2);
-                $top: nth($position, 1);
-
-                &:nth-child(#{$i}) {
-                    --color: #{$color};
-                    --left: #{$left};
-                    --top: #{$top};
-                }
-            }
-
-            &:not(.center) {
-                --offset: .7em;
-
-                &::before,
-                &::after {
-                    content: '';
-                    background-color: inherit;
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    opacity: .5;
-                    border-radius: 50%;
-                    z-index: -1;
-                    top: var(--offset);
-                }
-
-                &::before {
-                    top: unset;
-                    bottom: var(--offset);
-                }
-            }
-
-            &.center {
-                color: white;
-                --color: #4E7C9D;
-                --left: 50%;
-                --top: 65%;
-                font-weight: 700;
-
-                &::after {
-                    content: '';
-                    border: .1em solid white;
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    transform: scale(.95);
-                    border-radius: 50%;
-                }
-            }
-        }
+      .right {
+        order: 2;
+      }
     }
 
     .blueBlock {
-        background: url('/Content/images/courseDetails/blueBlock.png');
-        background-size: cover;
-        width: 32.4em;
-        height: 20.5em;
-        padding-inline: 3.4em;
-        padding-block: 7.7em 1em;
-        margin: 2.7em auto;
-        line-height: 1.7em;
-        color: white;
-        font-size: 1.2em;
-        text-align: justify;
-        overflow: hidden;
-        position: relative;
+      font-size: 3.7vw;
+      width: 90vw;
+      height: 56vw;
+      padding: 6vw;
+      padding-top: 13.5vw;
 
-        &::before {
-            content: '“';
-            font-size: 6em;
-            position: absolute;
-            top: 1em;
-        }
+      &::before {
+        top: 12.8vw;
+      }
     }
 
-    .part {
-        background-color: var(--colorTheme);
-        border-radius: var(--radius);
-        font-size: 1.2em;
-        color: var(--colorCompliment);
-        padding: 0.9em 2.3em;
-        margin-bottom: .5em !important;
+    .box.project {
+      display: flex;
+      flex-direction: column;
+      padding-inline: 1.5em;
+
+      img {
+        width: 15em;
+        margin: auto;
+      }
     }
+  }
 
-    .box {
-        background-color: var(--colorCompliment);
-        border: .1em solid var(--colorAlt);
-        border-radius: var(--radius);
-        padding: 1em 2em;
-        margin-bottom: 3rem;
-        --p: #5C5C5C;
-
-        &.project {
-            background-color: var(--colorAlt);
-            display: grid;
-            grid-template-columns: 25% auto;
-            gap: 6em;
-            padding: 1em 5em;
-
-            * {
-                color: var(--colorCompliment) !important;
-            }
-
-            .left {
-                margin-block: auto;
-
-                h4 {
-                    margin-top: 1em;
-                }
-            }
-
-            img {
-                margin-block: auto;
-            }
-        }
+  @include v.media(v.$mobile) {
+    .imgWrap {
+      font-size: 0.6em;
     }
-
-    img.float {
-        &.right {
-            float: right;
-        }
-
-        &.left {
-            float: left;
-        }
-    }
-
-    // @include v.media(1400px) {
-    // }
-
-    @include v.media(v.$screen) {
-        .chart {
-            font-size: 1.8vw;
-        }
-
-        .imgWrap {
-            font-size: .8em;
-        }
-    }
-
-    @include v.media(v.$laptop) {
-        .chart {
-            font-size: 2.1vw;
-        }
-
-        .box.project {
-            padding: 1em;
-            gap: 1em;
-            grid-template-columns: 34% auto;
-        }
-    }
-
-    @include v.media(v.$tablet) {
-        .chart {
-            font-size: 1.75vw;
-            width: 51.7em;
-            height: 43.9em;
-            margin-bottom: 14em !important;
-
-            >span {
-                font-size: 1.6em;
-                padding: 0;
-                $positions: (0 50%),
-                (50% 17%),
-                (50% 85%),
-                (100% 20%),
-                (100% 80%);
-
-                @for $i from 1 through length($positions) {
-                    $item: nth($positions, $i);
-                    $top: nth($item, 1);
-                    $left: nth($item, 2);
-
-                    &:nth-child(#{$i}) {
-                        --top: #{$top};
-                        --left: #{$left};
-                    }
-                }
-
-                &.center {
-                    --top: 73%;
-                }
-            }
-        }
-
-        .split {
-            display: flex;
-            flex-direction: column;
-
-            .left {
-                order: 1;
-                padding: 0;
-
-                .imgWrap:not(:first-child) {
-                    display: none;
-                }
-
-                .imgWrap:first-child {
-                    float: unset;
-                    margin: 2em auto;
-                }
-            }
-
-            .right {
-                order: 2;
-            }
-        }
-
-        .blueBlock {
-            font-size: 3.7vw;
-            width: 90vw;
-            height: 56vw;
-            padding: 6vw;
-            padding-top: 13.5vw;
-
-            &::before {
-                top: 12.8vw;
-            }
-        }
-
-        .box.project {
-            display: flex;
-            flex-direction: column;
-            padding-inline: 1.5em;
-
-            img {
-                width: 15em;
-                margin: auto;
-            }
-        }
-    }
-
-    @include v.media(v.$mobile) {
-        .imgWrap {
-            font-size: .6em;
-        }
-    }
+  }
 }
