@@ -195,6 +195,37 @@
     margin-bottom: 0.5em !important;
   }
 
+  button.collapsible {
+    background: var(--colorTheme);
+    color: var(--colorCompliment);
+    font-size: 1.2em;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    &::before {
+      content: "+";
+    }
+
+    + * {
+      height: 0;
+      overflow: hidden;
+      transition: 1s;
+    }
+
+    &.active {
+      &::before {
+        content: '-';
+      }
+      + * {
+        height: var(--scrollHeight);
+      }
+    }
+  }
+
   .box {
     background-color: var(--colorCompliment);
     border: 0.1em solid var(--colorAlt);

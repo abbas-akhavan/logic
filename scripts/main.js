@@ -30,4 +30,12 @@ $(function () {
 
     window.addEventListener("scroll", checkScroll);
   }
+
+  //collapsible
+  const collapsible = dc.queries(".collapsible");
+  if (collapsible)
+    collapsible.forEach(coll => {
+      let nextElement = coll.nextElementSibling;
+      nextElement.style.setProperty('--scrollHeight', nextElement.scrollHeight + 'px')
+    });
 });

@@ -10,10 +10,14 @@
     --h_compliment: #C39C1B;
 
     a {
-        text-decoration: underline;
         color: var(--h);
 
+        &:hover {
+            text-decoration: underline;
+        }
+
         &:not([href^="#"]):not(.normal) {
+            text-decoration: underline;
             color: var(--a);
             text-underline-offset: 6px;
         }
@@ -52,17 +56,24 @@
 
     ul,
     ol {
-        li {
+        > li {
             /*margin-right: 1.1rem;*/
             list-style-type: none;
         }
+        > a {
+            display: list-item;
+        }
 
         &.disk {
-            li, a {
+            >li, >a {
                 display: list-item ;
                 margin-right: 0.9rem;
                 list-style-type: disc;
             }
+        }
+
+        ul,ol {
+            margin-right: 1em;
         }
     }
 
