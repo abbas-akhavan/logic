@@ -207,6 +207,7 @@
       background-color: var(--colorAlt);
       display: grid;
       grid-template-columns: 25% auto;
+      grid-template-areas: "right left";
       gap: 6em;
       padding: 1em 5em;
 
@@ -215,6 +216,7 @@
       }
 
       .left {
+        grid-area: left;
         margin-block: auto;
 
         h4 {
@@ -224,6 +226,7 @@
 
       img {
         margin-block: auto;
+        grid-area: right;
       }
     }
 
@@ -239,19 +242,6 @@
       margin-left: 3em;
     }
   }
-
-  img.float {
-    &.right {
-      float: right;
-    }
-
-    &.left {
-      float: left;
-    }
-  }
-
-  // @include v.media(1400px) {
-  // }
 
   @include v.media(v.$screen) {
     .chart {
