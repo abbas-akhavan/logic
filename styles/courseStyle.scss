@@ -17,6 +17,68 @@ main#course {
     margin-bottom: 6em;
   }
 
+  #scrollProgress {
+    z-index: 100;
+    background: white;
+    --color: #5a5a5a;
+    color: var(--color);
+    display: flex;
+    justify-content: space-between;
+    counter-reset: scrollProgress;
+    padding: 1.5em 1.2em;
+    position: sticky;
+    top: 0;
+    border-radius: 0.6em;
+
+    a {
+      position: relative;
+      opacity: .35;
+      transition: .2s;
+
+      &::before {
+        counter-increment: scrollProgress;
+        content: counter(scrollProgress);
+        border: 0.1em solid var(--color);
+        border-radius: 50%; 
+        width: 0;
+        height: 0;
+        padding: 0.8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.4em;
+        font-family: inherit;
+        margin: auto;
+      }
+
+      &:not(:first-child)::after {
+        content: "";
+        display: block;
+        width: 36em;
+        height: 0.1em;
+        background: var(--color);
+        position: absolute;
+        left: 100%;
+        z-index: 1000;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        opacity: .2;
+      }
+
+      &.active {
+        opacity: 1;
+        &::before {
+          color: white;
+          background: var(--colorTheme);
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
   > header {
     background-color: var(--colorTheme);
     color: var(--colorCompliment);

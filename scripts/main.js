@@ -33,9 +33,24 @@ $(function () {
 
   //collapsible
   const collapsible = dc.queries(".collapsible");
-  if (collapsible)
-    collapsible.forEach(coll => {
+  if (collapsible) {
+    collapsible.forEach((coll) => {
       let nextElement = coll.nextElementSibling;
-      nextElement.style.setProperty('--scrollHeight', nextElement.scrollHeight + 'px')
+      nextElement.style.setProperty(
+        "--scrollHeight",
+        nextElement.scrollHeight + "px"
+      );
     });
+  }
+
+  //scroll progress
+  const scrollProgress = dc.id('scrollProgress');
+  if (scrollProgress) {
+    let items = scrollProgress.queries('#scrollProgress a');
+    items.forEach(item => {
+      item.onclick = () => {
+        item.classList.toggle('active')
+      }
+    })
+  }
 });
