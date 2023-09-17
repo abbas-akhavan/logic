@@ -397,4 +397,8 @@ main#course {
     @include v.fontAwsome("f106", 900);
     transition: inherit;
   }
+
+  @include v.media(v.$mobile) {
+    font-size: 1.5em;
+  }
 }
