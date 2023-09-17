@@ -227,12 +227,16 @@
       }
     }
 
-    > img {
-      float: left;
+    img {
       box-shadow: unset !important;
-      margin-left: 3em;
       cursor: unset !important;
       max-width: 100%;
+    }
+
+    &:not(.project) > img {
+      width: 30%;
+      float: left;
+      margin-left: 3em;
     }
   }
 
@@ -346,10 +350,11 @@
           margin: auto;
         }
       }
-      
-      > img {
+
+      &:not(.project) > img {
         float: unset;
-      margin: 2em auto;
+        margin: 2em auto;
+        width: unset;
       }
     }
   }
