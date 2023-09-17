@@ -1,56 +1,68 @@
 $(function () {
-  //event of videos inside course content (journal)
-  const courseVideos = document.querySelectorAll(".courseVideo");
-  if (courseVideos.length > 0)
-    courseVideos.forEach((videoWrap) => {
-      const video = videoWrap.querySelector("video");
+  setTimeout(() => {
+    //event of videos inside course content (journal)
+    const courseVideos = document.querySelectorAll(".courseVideo");
+    if (courseVideos.length > 0)
+      courseVideos.forEach((videoWrap) => {
+        const video = videoWrap.querySelector("video");
 
-      videoWrap.onclick = () => {
-        videoWrap.classList.add("active");
-        video.controls = true;
-        video.play();
+        videoWrap.onclick = () => {
+          videoWrap.classList.add("active");
+          video.controls = true;
+          video.play();
+        };
+
+        video.onended = () => {
+          videoWrap.classList.remove("active");
+          video.controls = false;
+        };
+      });
+
+    //getUp
+    const getUp = dc.id("getUp");
+    if (getUp) {
+      const checkScroll = () => {
+        if (window.scrollY > window.innerHeight) getUp.classList.add("active");
+        else getUp.classList.remove("active");
+      };
+      getUp.onclick = () => {
+        window.scrollTo(0, 0);
       };
 
-      video.onended = () => {
-        videoWrap.classList.remove("active");
-        video.controls = false;
-      };
-    });
+      window.addEventListener("scroll", checkScroll);
+    }
 
-  //getUp
-  const getUp = dc.id("getUp");
-  if (getUp) {
-    const checkScroll = () => {
-      if (window.scrollY > window.innerHeight) getUp.classList.add("active");
-      else getUp.classList.remove("active");
+    //collapsible
+    const collapsible = dc.queries(".collapsible");
+    if (collapsible) {
+      collapsible.forEach((coll) => {
+        let nextElement = coll.nextElementSibling;
+        nextElement.style.setProperty(
+          "--scrollHeight",
+          nextElement.scrollHeight + "px"
+        );
+      });
+    }
+
+    const isScrolledOver = (element) => {
+      return element.getBoundingClientRect().top - window.innerHeight < 0;
     };
-    getUp.onclick = () => {
-      window.scrollTo(0, 0);
-    };
 
-    window.addEventListener("scroll", checkScroll);
-  }
+    //scroll progress
+    const scrollProgress = dc.id("scrollProgress");
+    if (scrollProgress) {
+      let items = scrollProgress.queries("#scrollProgress a");
+      items.forEach((item) => {
+        let query = item.getAttribute("href").substr(1);
+        let element = dc.id(query);
+        if (!element) return;
 
-  //collapsible
-  const collapsible = dc.queries(".collapsible");
-  if (collapsible) {
-    collapsible.forEach((coll) => {
-      let nextElement = coll.nextElementSibling;
-      nextElement.style.setProperty(
-        "--scrollHeight",
-        nextElement.scrollHeight + "px"
-      );
-    });
-  }
+        window.addEventListener("scroll", () => {
+          if (isScrolledOver(element)) item.classList.add("active");
+          else item.classList.remove('active');
+        });
+      });
+    }
 
-  //scroll progress
-  const scrollProgress = dc.id('scrollProgress');
-  if (scrollProgress) {
-    let items = scrollProgress.queries('#scrollProgress a');
-    items.forEach(item => {
-      item.onclick = () => {
-        item.classList.toggle('active')
-      }
-    })
-  }
+  }, 500);
 });
