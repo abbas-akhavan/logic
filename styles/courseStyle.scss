@@ -72,6 +72,10 @@ body {
     padding-inline: 3%;
     box-shadow: 0px 0px 31px #0000000a;
   }
+
+  @include v.media(v.$mobile) {
+    font-size: .8em;
+  }
 }
 
 main#course {
