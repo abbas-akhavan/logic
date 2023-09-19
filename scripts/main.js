@@ -51,6 +51,7 @@ $(function () {
     //scroll progress
     const scrollProgress = dc.id("scrollProgress");
     if (scrollProgress) {
+      //activate scroll progress buttons
       let items = scrollProgress.queries("#scrollProgress a");
       items.forEach((item) => {
         let query = item.getAttribute("href").substr(1);
@@ -59,10 +60,15 @@ $(function () {
 
         window.addEventListener("scroll", () => {
           if (isScrolledOver(element)) item.classList.add("active");
-          else item.classList.remove('active');
+          else item.classList.remove("active");
         });
       });
-    }
 
+      //
+      window.addEventListener("scroll", () => {
+        if (scrollProgress.getBoundingClientRect().top) scrollProgress.classList.remove("stick");
+        else scrollProgress.classList.add("stick");
+      });
+    }
   }, 500);
 });

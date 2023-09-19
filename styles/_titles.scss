@@ -1,6 +1,6 @@
 @mixin titles {
 
-    .h2, .h3, h2, h3 {
+    .h2, .h3, h2, h3, .title {
         color: var(--h);
         --borderlength: 1.5rem;
         font-weight: bold;
@@ -39,7 +39,7 @@
 
     }
 
-    .h3, h3 {
+    .h3, h3, .subtitle {
         font-size: 1.3rem;
         padding-bottom: 0.5rem;
     }
