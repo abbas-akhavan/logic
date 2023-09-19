@@ -56,17 +56,24 @@ $(function () {
       items.forEach((item) => {
         let query = item.getAttribute("href").substr(1);
         let element = dc.id(query);
+        let line = item.previousElementSibling;
         if (!element) return;
 
         window.addEventListener("scroll", () => {
-          if (isScrolledOver(element)) item.classList.add("active");
-          else item.classList.remove("active");
+          if (isScrolledOver(element)) {
+            line && line.classList.add('active');
+            item.classList.add("active");
+          } else {
+            line && line.classList.remove('active');
+            item.classList.remove("active");
+          }
         });
       });
 
       //
       window.addEventListener("scroll", () => {
-        if (scrollProgress.getBoundingClientRect().top) scrollProgress.classList.remove("stick");
+        if (scrollProgress.getBoundingClientRect().top)
+          scrollProgress.classList.remove("stick");
         else scrollProgress.classList.add("stick");
       });
     }
