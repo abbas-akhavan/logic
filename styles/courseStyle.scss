@@ -1,5 +1,7 @@
 @use "journal";
+@use "courseInfo" as ci;
 @use "../Content/source/Variables" as v;
+@use "aboutTeacher";
 
 body {
   background-color: #faf9ff;
@@ -28,7 +30,7 @@ body {
     background-color: var(--color);
     margin-block: auto;
     opacity: 0.2;
-    transition: .2s;
+    transition: 0.2s;
 
     &.active {
       opacity: 1;
@@ -74,17 +76,125 @@ body {
   }
 
   @include v.media(v.$mobile) {
-    font-size: .8em;
+    font-size: 0.8em;
   }
 }
+#microserviceHeader {
+  font-size: 1vw; 
+  position: relative;
+  margin-top: 10em;
 
+  > div {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    line-height: 3em;
+    > h1 {
+      font-size: 2.5em;
+    }
+
+    > span {
+      text-align: left;
+      font-size: 1.9em;
+    }
+  }
+  > picture {
+    &:nth-of-type(1) {
+      > img {
+        width: 100%;
+      }
+    }
+    &:nth-of-type(2) {
+      > img {
+        position: absolute;
+        top: 50%;
+        right: 12.7em;
+        transform: translateY(-50%);
+        width: 16em;
+      }
+    }
+  }
+  > img {
+    position: absolute;
+    top: -9em;
+    left: 3em;
+    width: 23em;
+  }
+
+  @include v.media(v.$tablet) {
+    > picture {
+      &:nth-of-type(2) {
+        > img {
+          top: 56%;
+          right: 47.7em;
+          transform: unset;
+          width: 35em;
+          opacity: 0.5;
+        }
+      }
+    }
+    > img {
+      top: 20em;
+      left: 47em;
+      width: 46em;
+    }
+    > div {
+      > h1 {
+        font-size: 7.5em;
+        > span {
+          display: block;
+          position: absolute;
+          width: max-content;
+          &:nth-of-type(1) {
+            top: -3em;
+            right: -5em;
+          }
+          &:nth-of-type(2) {
+            top: -1.4em;
+            right: -2em;
+          }
+        }
+      }
+      > span {
+        &:nth-of-type(1) {
+          display: block;
+          position: absolute;
+          width: max-content;
+          top: -0.4em;
+          right: -1em;
+          font-size: 4em;
+        }
+      }
+    }
+  }
+}
 main#course {
   --colorCompliment: white;
   --radius: 1em;
   --shadow: 0px 0px 15px #00000014;
   --colorHeighlight: #308fcc;
-
   margin: 3em 4%;
+  .micro {
+    --h_compliment: #0052cc;
+    --colorTheme: #0052cc;
+    --colorAlt: #0052cc;
+  }
+
+  .ddd {
+    --h_compliment: #27c3dd;
+    --colorTheme: #27c3dd;
+    --colorAlt: #27c3dd;
+  }
+  .logic{
+    --h_compliment: #515e7a;
+    --colorTheme: #515e7a;
+    --colorAlt: #515e7a;
+  }
+
 
   > * {
     margin-bottom: 6em;
@@ -195,70 +305,7 @@ main#course {
   }
 
   > .courseInfo {
-    color: #42515a;
-    font-size: 1.2em;
-
-    span {
-      padding: 1.6em 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      line-height: 1.3em;
-    }
-
-    .head,
-    .body .tr {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      border-radius: var(--radius);
-    }
-
-    .head {
-      background-color: transparent;
-      border-radius: var(--radius);
-      margin-bottom: 1em;
-      overflow: hidden;
-      position: relative;
-
-      span {
-        font-weight: 600;
-      }
-
-      &::after {
-        content: "";
-        background-color: var(--colorTheme);
-        opacity: 0.3;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-      }
-    }
-
-    .body {
-      background-color: white; //sdff
-      border-radius: var(--radius);
-      padding: 1em;
-      box-shadow: var(--shadow);
-
-      .tr:nth-child(2n) {
-        background-color: #f9f9f9; //sdff
-      }
-
-      span:nth-child(8) {
-        color: red;
-      }
-    }
-
-    a.button {
-      background-color: #308fcc;
-      color: white;
-      width: fit-content;
-      height: fit-content;
-      margin: auto;
-      padding: 0.3em 1em;
-      border-radius: 0.5em;
-    }
+    @include ci.courseInfo;
   }
 
   > .main {
@@ -302,7 +349,68 @@ main#course {
         }
       }
     }
+    > article {
+      .certificate {
+        background-color: var(--colorTheme);
+        padding: 1.5em 3em;
+        border-radius: var(--radius);
+        margin-block: 3em;
+
+        * {
+          color: white;
+          text-align: center;
+        }
+
+        > .h4,
+        p {
+          margin-bottom: 1rem;
+        }
+
+        > .h4 {
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+
+        > a {
+          display: block;
+          width: fit-content;
+          margin: auto;
+          background-color: white;
+          text-decoration: none !important;
+          padding: 0.5em 1em;
+          border-radius: 9px;
+          font-weight: 500;
+          color: var(--colorTheme) !important;
+        }
+      }
+      .signupButton {
+        width: fit-content;
+        font-family: inherit;
+        background-color: var(--colorTheme);
+        color: white;
+        border-radius: 33px;
+        display: block;
+        margin: 0 auto;
+        padding: 14px 30px;
+        font-size: 22px;
+        margin-bottom: 40px;
+        font-weight: 600;
+      }
+    }
   }
+  &.microservice , &.logic-course{
+    > .main {
+      grid-template-columns: auto;
+    }
+  }
+  &.logic-course{
+    margin-inline: 0;
+
+    .courseInfo{
+      margin-inline: 4%;
+    }
+  }
+
 
   @include v.media(1400px) {
     > header {

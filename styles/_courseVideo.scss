@@ -1,16 +1,17 @@
-@use '../Content/source/Variables' as v;
+@use '/Content/source/Variables' as v;
+
 @mixin courseVideo {
     max-width: 52em;
     width: 100%;
     margin: 5em auto;
-    background-color: grey;
     position: relative;
-    border-radius: 1rem;
-    overflow: hidden;
     cursor: pointer;
 
     video {
         width: 100%;
+        margin: 0;
+        border-radius: 1rem;
+        max-width : unset;
     }
 
     .title,
@@ -28,11 +29,10 @@
     p {
         font-size: 1.5em;
         top: calc(50% + 3.4em);
-        font-weight: 100;
     }
 
     img {
-        --wid: 9em;
+        --wid: 4em;
         border-radius: 50%;
         position: absolute;
         width: var(--wid);
@@ -43,12 +43,13 @@
         top: 0;
     }
 
-    >* {
+    > * {
         z-index: 10;
     }
 
     &::after {
         content: "";
+        border-radius: 1rem;
         background-color: rgb(26 26 26 / 85%);
         position: absolute;
         width: 100%;
@@ -66,6 +67,14 @@
     }
 
     @include v.media(v.$tablet) {
-        font-size: 0.8em;
+        font-size: 0.6em;
+        margin-bottom: 10em;
+
+        p {
+            color: black;
+            top: calc(100% + 1em);
+            opacity: 100 !important;
+            visibility: visible !important;
+        }
     }
 }

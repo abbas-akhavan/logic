@@ -1,0 +1,66 @@
+@mixin courseInfo{
+    color: #42515a;
+    font-size: 1.2em;
+
+    span {
+      padding: 1.6em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      line-height: 1.3em;
+    }
+
+    .head,
+    .body .tr {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      border-radius: var(--radius);
+    }
+
+    .head {
+      background-color: transparent;
+      border-radius: var(--radius);
+      margin-bottom: 1em;
+      overflow: hidden;
+      position: relative;
+
+      span {
+        font-weight: 600;
+      }
+
+      &::after {
+        content: "";
+        background-color: var(--colorTheme);
+        opacity: 0.3;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+    }
+
+    .body {
+      background-color: white; //sdff
+      border-radius: var(--radius);
+      padding: 1em;
+      box-shadow: var(--shadow);
+
+      .tr:nth-child(2n) {
+        background-color: #f9f9f9; //sdff
+      }
+
+      span:nth-child(8) {
+        color: red;
+      }
+    }
+
+    a.button {
+      background-color: #308fcc;
+      color: white;
+      width: fit-content;
+      height: fit-content;
+      margin: auto;
+      padding: 0.3em 1em;
+      border-radius: 0.5em;
+    }
+}

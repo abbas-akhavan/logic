@@ -23,7 +23,7 @@
     border: none;
     position: relative;
     margin-bottom: 2em !important;
-    
+
     &::after {
       content: "";
       display: block;
@@ -35,12 +35,6 @@
       left: 0;
       right: 0;
       margin: auto;
-    }
-  }
-  &.noLine{
-    border: none;
-    &::after{
-      display: none;
     }
   }
 }
