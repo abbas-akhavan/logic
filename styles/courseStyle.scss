@@ -406,12 +406,25 @@ main#course {
   &.logic-course{
     margin-inline: 0;
 
-    .courseInfo{
-      margin-inline: 4%;
+    .courseInfo , #aboutTeacher , .certificate{
+      margin-inline: 5%;
     }
   }
 
 
+  @media (min-width : 1200px){
+    &.logic-course{
+      .courseInfo{
+        font-size: 1vw;
+      }
+      .road-map-details{
+        p{
+          font-size: 1.3vw;
+          line-height: 1.5em;
+        }
+      }
+    }
+  }
   @include v.media(1400px) {
     > header {
       font-size: 0.8em;
@@ -473,6 +486,7 @@ main#course {
     }
   }
 
+  
   @include v.media(v.$laptop) {
   }
 

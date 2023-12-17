@@ -5,11 +5,11 @@
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: cover;
-  padding-top: 18vw;
   padding-bottom: 8vw;
   height: auto;
   min-height: 100%;
   margin-bottom: 5em;
+  padding-top: 3vw;
 
   h2,h3,h4{
     border-image: none;
@@ -22,18 +22,18 @@
     font-size: 1.1em;
   }
 
-  > div {
-    &:nth-child(1) {
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: white;
-      opacity: 0.75;
+  >#content-of-category{
+    >p{
+      color: #383838;
+    width: 92%;
+    margin: auto;
+    margin-block: 3em !important;
     }
+    position: relative;
+    z-index: 3;
   }
-  > .road-map-anchors {
+
+  .road-map-anchors {
     width: 91%;
     margin: auto;
     display: none;
@@ -70,6 +70,49 @@
       }
     }
   }
+  .road-map-category{
+    position: relative;
+    font-size: 1vw;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    z-index: 3;
+    
+    >span{
+      font-size: 1.6em;
+    --wid: 6em;
+    padding: 0.5em;
+    width: var(--wid);
+    height: var(--wid);
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover{
+      background-color: var(--colorTheme);
+      color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, .8);
+    }
+    }
+  }
+
+  > div {
+    &:nth-child(1) {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      opacity: 0.75;
+    }
+  }
+  
   .road-map-overview {
     position: relative;
     z-index: 3;
@@ -539,7 +582,7 @@
     background-image: url("../ThemeImages/roadMapDetailBgRes2.png");
     background-repeat: repeat-y;
     padding-top: 2em;
-    > .road-map-anchors {
+     .road-map-anchors {
       display: grid;
     }
     > h3 {
@@ -691,6 +734,14 @@
         }
       }
     }
+    .road-map-category{
+      gap: 3em;
+      flex-wrap: wrap;
+      >span{
+        --wid : 6.5em;
+        font-size: 4.4em;
+      }
+    }
   }
   @include v.media(v.$mobile) {
     > h3 {
@@ -698,7 +749,7 @@
       top: 15em;
       line-height: 2em;
     }
-    > .road-map-anchors {
+     .road-map-anchors {
       > a {
         font-size: .8em;
       }

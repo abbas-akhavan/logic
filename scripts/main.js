@@ -49,10 +49,10 @@ $(function () {
 
         window.addEventListener("scroll", () => {
           if (isScrolledOver(element)) {
-            line && line.classList.add('active');
+            line && line.classList.add("active");
             item.classList.add("active");
           } else {
-            line && line.classList.remove('active');
+            line && line.classList.remove("active");
             item.classList.remove("active");
           }
         });
@@ -67,88 +67,118 @@ $(function () {
     }
 
     //overlay for videos of pages
-  if($(".overlay").length > 0){
-    $(".overlay").click(function(){
+    if ($(".overlay").length > 0) {
+      $(".overlay").click(function () {
         $(this).removeClass("overlay");
-        $(this).find("video").attr("controls" , true);
+        $(this).find("video").attr("controls", true);
         $(this).find("video")[0].play();
-    });
-    $(".overlay").find("video").on("ended",function(){
-        $(this).attr("controls" , false);
-        $(this).parents(".road-map-video").addClass("overlay");
-    });
-}
-//End
-
-//show course info codes when user click on course title
-if($("[class*='station']")){
-    $("[class*='station']").click(function(event){
-        //disable bubble because nested .station classes
-        if(event.stopPropagation){
-            event.stopPropagation();
-        }
-        else{
-            event.cancelBubble = true;
-
-        }
-
-        //show course info and scroll to info section
-        let description = $(this).parents(".ro  ad-map-overview").children(".road-map-description");
-        if($(this).data("id")){
-            let data = `{"id" : ${$(this).data("id")}}`;
-            $.get("url" , data , function(ReceivedData , status){
-                if(status == "success"){
-                    // $(description).html(ReceivedData);
-                    if($(window).width() < 698){
-                        $("html , body").animate({scrollTop : description.offset().top} , 100);
-                    }
-                }
-            });
-        }
-    });
-}
-if($(".prerequisite")){
-    $(".prerequisite").click(function(event){
-        
-        if(event.stopPropagation){
-            event.stopPropagation();
-        }
-        else{
-            event.cancelBubble = true;
-        }
-
-        //show course info and scroll to info section
-        let description = $(this).parents(".road-map-overview").children(".road-map-description");
-        if($(this).data("id")){
-            let data = `{"id" : ${$(this).data("id")}}`;
-            $.get("url" , data , function(ReceivedData , status){
-                if(status == "success"){
-                    // $(description).html(ReceivedData);
-                    //scroll to info section on mobile device
-                    if($(window).width() < 698){
-                        $("html , body").animate({scrollTop : description.offset().top} , 100);
-                    }
-                    
-                }
-            });
-        }
-    });
-}
-//End
-
-//calculate height of road-map-stations depending on number of stations in small devices
-if($(window).width() < 698){
-    if($(".road-map-stations")){
-        $(".road-map-stations").each(function(){
-          debugger;
-            let stationsCounte = $(this).find("[class*='station']").length + 7;
-            let height = stationsCounte * 19;//every station has 19vw height
-            $(this).css("height" , height + "vw");
+      });
+      $(".overlay")
+        .find("video")
+        .on("ended", function () {
+          $(this).attr("controls", false);
+          $(this).parents(".road-map-video").addClass("overlay");
         });
     }
-}
-//End
-  }, 500);
 
-  
+    //show course info  when user click on course title
+    if ($("[class*='station']")) {
+      $("[class*='station']").click(function (event) {
+        //disable bubble because nested .station classes
+        if (event.stopPropagation) {
+          event.stopPropagation();
+        } else {
+          event.cancelBubble = true;
+        }
+
+        //show course info and scroll to info section
+        let description = $(this)
+          .parents(".road-map-overview")
+          .children(".road-map-description");
+        if ($(this).data("id")) {
+          let data = `{"id" : ${$(this).data("id")}}`;
+          $.get("url", data, function (ReceivedData, status) {
+            if (status == "success") {
+              // $(description).html(ReceivedData);
+              if ($(window).width() < 698) {
+                $("html , body").animate(
+                  { scrollTop: description.offset().top },
+                  100
+                );
+              }
+            }
+          });
+        }
+      });
+    }
+    if ($(".prerequisite")) {
+      $(".prerequisite").click(function (event) {
+        if (event.stopPropagation) {
+          event.stopPropagation();
+        } else {
+          event.cancelBubble = true;
+        }
+
+        //show course info and scroll to info section
+        let description = $(this)
+          .parents(".road-map-overview")
+          .children(".road-map-description");
+        if ($(this).data("id")) {
+          let data = `{"id" : ${$(this).data("id")}}`;
+          $.get("url", data, function (ReceivedData, status) {
+            if (status == "success") {
+              // $(description).html(ReceivedData);
+              //scroll to info section on mobile device
+              if ($(window).width() < 698) {
+                $("html , body").animate(
+                  { scrollTop: description.offset().top },
+                  100
+                );
+              }
+            }
+          });
+        }
+      });
+    }
+    //End
+
+    //calculate height of road-map-stations depending on number of stations in small devices
+    if ($(window).width() < 698) {
+      if ($(".road-map-stations")) {
+        $(".road-map-stations").each(function () {
+          debugger;
+          let stationsCounte = $(this).find("[class*='station']").length + 7;
+          let height = stationsCounte * 19; //every station has 19vw height
+          $(this).css("height", height + "vw");
+        });
+      }
+    }
+    //End
+
+    //road map category ajax code
+    const roadMapCategory = dc.queries('[data-sendto]');
+    if(roadMapCategory.length > 0){
+      roadMapCategory.forEach( item =>{
+        item.addEventListener('click' , function(){
+          let url = this.dataset.sendto;
+          let data = {category : this.dataset.mydata};
+          const categoryContent = dc.query('#content-of-category');
+          fetch(url , {
+            method : 'POST',
+            headers : {
+              'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(data)
+          })
+          .then(response => response.text())
+          .then(data => {
+            categoryContent.innerHTML = data
+          })
+          .catch(error => {
+            console.log('Error' , error)
+          }) 
+        });
+      });
+    }
+  }, 500);
 });
