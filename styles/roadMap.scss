@@ -22,7 +22,7 @@
     font-size: 1.1em;
   }
 
-  >#content-of-category{
+  >.content-of-category{
     >p{
       color: #383838;
     width: 92%;
@@ -31,6 +31,11 @@
     }
     position: relative;
     z-index: 3;
+    display: none;
+
+    &.active{
+      display: block;
+    }
   }
 
   .road-map-anchors {
@@ -44,7 +49,7 @@
     border-bottom: 0.2em solid black;
     margin-bottom: 2em;
     padding-bottom: 1em;
-    a {
+    >span {
       position: relative;
       z-index: 3;
       border-radius: 50%;
@@ -525,11 +530,14 @@
       }
     }
   }
+  @include v.media(1540px) {
+    background-image: url("../ThemeImages/roadMapDetailBgRes.png");
+  }
   @include v.media(v.$screen) {
     > h3 {
       font-size: 1em;
     }
-    > .road-map-overview {
+   .road-map-overview {
       > .road-map-description {
         > p {
           font-size: 1.1em;
@@ -556,12 +564,8 @@
       }
     }
   }
-
-  @include v.media(1540px) {
-    background-image: url("../ThemeImages/roadMapDetailBgRes.png");
-  }
   @include v.media(v.$laptop) {
-    > .road-map-overview {
+    .road-map-overview {
       > .road-map-stations {
         > .big-circle {
           font-size: 1.1em;
@@ -750,7 +754,7 @@
       line-height: 2em;
     }
      .road-map-anchors {
-      > a {
+      > span {
         font-size: .8em;
       }
     }

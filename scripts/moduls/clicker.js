@@ -26,6 +26,7 @@ function refreshOnClicks() {
     })
 
     //* Target system (grouped and single)
+    debugger;
     let targeter = document.querySelectorAll('[data-target]');
     targeter.forEach(i => {
         if (i.targetEvent) return
@@ -56,4 +57,6 @@ function refreshOnClicks() {
         })
     });
 }
-$(refreshOnClicks)
+setTimeout(() => {
+    refreshOnClicks();
+}, 1000);

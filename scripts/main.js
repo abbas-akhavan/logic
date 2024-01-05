@@ -95,6 +95,7 @@ $(function () {
         let description = $(this)
           .parents(".road-map-overview")
           .children(".road-map-description");
+          console.log($(this).data("id"))
         if ($(this).data("id")) {
           let data = `{"id" : ${$(this).data("id")}}`;
           $.get("url", data, function (ReceivedData, status) {
@@ -146,9 +147,8 @@ $(function () {
     if ($(window).width() < 698) {
       if ($(".road-map-stations")) {
         $(".road-map-stations").each(function () {
-          debugger;
           let stationsCounte = $(this).find("[class*='station']").length + 7;
-          let height = stationsCounte * 19; //every station has 19vw height
+          let height = stationsCounte * 21; //every station has 19vw height
           $(this).css("height", height + "vw");
         });
       }
@@ -177,6 +177,17 @@ $(function () {
           .catch(error => {
             console.log('Error' , error)
           }) 
+        });
+      });
+    }
+
+    const roadMapAnchors = dc.queries('[data-scrolltoid]');
+    if (roadMapAnchors.length > 0) {
+      roadMapAnchors.forEach((item) => {
+        item.addEventListener('click' , function(){
+          let query = this.dataset.scrolltoid;
+          let elementToScroll = dc.id(query);
+          elementToScroll.scrollIntoView();
         });
       });
     }

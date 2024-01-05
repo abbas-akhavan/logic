@@ -419,8 +419,16 @@ main#course {
       }
       .road-map-details{
         p{
-          font-size: 1.3vw;
-          line-height: 1.5em;
+          font-size: 1.2vw;
+          line-height: 1.7em;
+        }
+      }
+      .certificate , #aboutTeacher{
+        font-size: 1.2vw;
+        line-height: 1.7em;
+
+        .h4{
+          font-size: 1.4vw !important;
         }
       }
     }
